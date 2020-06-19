@@ -3,17 +3,18 @@ import {Link} from 'react-router-dom'
 export const PizzaForm = (props) => {
     const{
         values,
-        submitOrder,
+        onSubmit,
         onChange,
         errors,
         onCheckBoxChange
     } = props
     return (
         <div>
-            <form onSubmit={submitOrder}>
+            <form onSubmit={onSubmit}>
                 <label>
                     Name:
                     <input 
+                    name='name'
                     type='text'
                     value={props.name}
                     onChange={onChange}
@@ -26,6 +27,7 @@ export const PizzaForm = (props) => {
                     Size:
                     <select 
                     type='text'
+                    name='size'
                     value={props.size}
                     onChange={onChange}
                     >
@@ -34,6 +36,15 @@ export const PizzaForm = (props) => {
                         <option value='medium'>Medium</option>
                         <option value='large'>Large</option>
                     </select>
+                </label>
+                <label>
+                    Special Instructions:
+                    <input 
+                    type='text'
+                    name='specialInstructions'
+                    value={props.specialInstructions}
+                    onChange={onChange}
+                    />
                 </label>
                 <div className="toppings">
                     <h4>Toppings</h4>
@@ -75,9 +86,9 @@ export const PizzaForm = (props) => {
                         />
                     </label>
                 </div>
-                <Link to={'/'}>
-                     <button>Confirm Order</button>
-                </Link>
+                
+               
+            <button>Confirm Order</button>
                 
             </form>
         </div>

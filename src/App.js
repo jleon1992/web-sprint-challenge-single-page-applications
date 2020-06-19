@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import PizzaForm from './PizzaForm'
 import PizzaList from './PizzaList'
 import { Route, Link } from 'react-router-dom'
 import formSchema from './formSchema'
 import * as Yup from 'yup'
-
+import axios from 'axios'
 
 const initialValues = {
   name: '',
@@ -44,10 +44,40 @@ const App = () => {
       .filter(toppingName => (formValues.toppings[toppingName] === true))
     }
     console.log(newOrder)
+    postNewOrder(newOrder)
     
     setOrders([...orders, newOrder])
   }
 
+
+  const getOrders = () => {
+    axios.get('http://localhost:4000/pizza')
+    .then(response => {
+      setOrders(response.data)
+    })
+    .catch(err => {
+      debugger
+    })
+  }
+  
+  useEffect(() => {
+    getOrders()
+  }, [])
+
+
+  const postNewOrder = newOrder => {
+    axios.post('https://reqres.in/api/pizza', newOrder)
+    .then(res=>{
+      console.log(res.data)
+      setOrders([...orders, res.data])
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+    .finally(()=>{
+      setFormValues(initialValues)
+    })
+  }
   const onChange = evt => {
     const { name, value } = evt.target
 
@@ -92,13 +122,13 @@ const App = () => {
 
 
   return (
-    <div>
+    <div className='container'>
       <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
+      <p>Place your order and code as we deliver</p>
       {/* <PizzaForm values={formValues} onChange={onChange} onSubmit={onSubmit} errors={errors} onCheckBoxChange={onCheckBoxChange} /> */}
-
+    
       <Link to={'/pizza'}>
-        <button>Place Order</button>
+        <button>Create Order</button>
       </Link>
 
 

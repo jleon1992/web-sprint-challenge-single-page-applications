@@ -86,8 +86,12 @@ export const PizzaForm = (props) => {
                         />
                     </label>
                 </div>
-
-                 <button className='confirmBtn'>Confirm Order</button>
+    
+                        <button className='confirmBtn'>Confirm Order</button>
+                    <Link to='/'>
+                        <button>Cancel</button>
+                    </Link>
+                 
           
             
                 

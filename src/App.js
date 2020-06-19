@@ -43,26 +43,12 @@ const App = () => {
       toppings: Object.keys(formValues.toppings)
       .filter(toppingName => (formValues.toppings[toppingName] === true))
     }
-    console.log(newOrder)
+
     postNewOrder(newOrder)
     
-    setOrders([...orders, newOrder])
+    // setOrders([...orders, newOrder])
   }
 
-
-  const getOrders = () => {
-    axios.get('http://localhost:4000/pizza')
-    .then(response => {
-      setOrders(response.data)
-    })
-    .catch(err => {
-      debugger
-    })
-  }
-  
-  useEffect(() => {
-    getOrders()
-  }, [])
 
 
   const postNewOrder = newOrder => {
@@ -123,19 +109,23 @@ const App = () => {
 
   return (
     <div className='container'>
+     <Link to='/'>
+       <button>Home</button>
+     </Link>
+
+      <Route path="/">
       <h1>Lambda Eats</h1>
       <p>Place your order and code as we deliver</p>
-      {/* <PizzaForm values={formValues} onChange={onChange} onSubmit={onSubmit} errors={errors} onCheckBoxChange={onCheckBoxChange} /> */}
     
       <Link to={'/pizza'}>
         <button>Create Order</button>
       </Link>
 
-
-
+     </Route>
 
       <div>
-        <Route  path="/">
+        
+        <Route path="/orders">
             {
               orders.map(order => {
                 return (

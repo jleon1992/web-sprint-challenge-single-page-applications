@@ -86,10 +86,11 @@ export const PizzaForm = (props) => {
                         />
                     </label>
                 </div>
-    
-                        <button className='confirmBtn'>Confirm Order</button>
-                    <Link to='/'>
-                        <button>Cancel</button>
+                <button className='confirmBtn'>Confirm Order</button>
+                
+                    <Link to='/orders'>
+                    
+                        <button>Orders</button>
                     </Link>
                  
           

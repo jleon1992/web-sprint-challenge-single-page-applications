@@ -5,11 +5,11 @@ const formSchema = Yup.object().shape({
     .string()
     .min(3, "Please enter a name larger than 3 letters")
     .required("Must include a name"),
-    specialInstructions: Yup
+  specialInstructions: Yup
     .string(),
-    toppings: Yup
+  toppings: Yup
     .string(),
-    size: Yup
+  size: Yup
     .string(),
 })
 

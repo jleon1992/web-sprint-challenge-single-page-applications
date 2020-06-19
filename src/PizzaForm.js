@@ -86,9 +86,10 @@ export const PizzaForm = (props) => {
                         />
                     </label>
                 </div>
-                
-               
-            <button>Confirm Order</button>
+
+                 <button className='confirmBtn'>Confirm Order</button>
+          
+            
                 
             </form>
         </div>
